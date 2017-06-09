@@ -1,0 +1,34 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "version": "1.0.0",
+    "name": "iFlavours-UI"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "tsconfig": "tsconfig.app.json",
+      "prefix": "if",
+      "styles": [
+        "styles.css"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "defaults": {
+    "styleExt": "css",
+    "component": {
+      "inlineTemplate": false,
+      "spec": true
+    }
+  }
+}

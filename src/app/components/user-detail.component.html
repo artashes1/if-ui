@@ -1,0 +1,33 @@
+<h2>User Detail</h2>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-group">
+    <label class="center-block">Email Address:
+      <input class="form-control" formControlName="emailAddress">
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label class="center-block">User Name:
+      <input class="form-control" formControlName="userName">
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>Roles:</label>
+    <div class="well well-lg">
+      <label *ngFor="let r of allRoles" class="center-block">
+        <input type="checkbox" [checked]="hasRole(r.id)" (change)="updateRole(r.id, $event)">
+        {{r.description}}
+      </label>
+    </div>
+  </div>
+
+  <nav>
+    <button type="submit" [disabled]="userForm.pristine" class="btn btn-success">{{isNew? 'Add user' : 'Update'}}</button>
+    <button *ngIf="!userForm.pristine" type="reset" (click)="revert()" class="btn btn-primary">Revert</button>
+    <a *ngIf="userForm.pristine" routerLink="/users">
+      <button type="button" class="btn btn-primary">Cancel</button>
+    </a>
+  </nav>
+</form>
+
