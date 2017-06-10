@@ -10,7 +10,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let user of users | async">
+  <tr *ngFor="let user of users | async" (click)="router.navigate(['/users', user.id])">
     <td><a routerLink="/users/{{user.id}}">{{user.userName}}</a></td>
     <td>{{user.firstName}}</td>
     <td>{{user.lastName}}</td>

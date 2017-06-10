@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserService, User } from '../servises/user.service';
 import 'rxjs/add/operator/finally';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'if-user-list',
@@ -11,7 +12,7 @@ export class UserListComponent implements OnInit {
   users: Observable<User[]>;
   isLoading = false;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
