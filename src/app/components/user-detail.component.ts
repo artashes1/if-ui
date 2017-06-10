@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -14,6 +14,7 @@ import { Role } from '../servises/roles-resolver.service';
 })
 export class UserDetailComponent implements OnInit {
   isNew = false;
+  feedback = '';
   user: User;
   allRoles: Role[];
   userForm: FormGroup;
@@ -22,7 +23,14 @@ export class UserDetailComponent implements OnInit {
     this.userForm = this.fb.group({
       id: [''],
       userName: ['', Validators.required],
+      password: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       emailAddress: ['', Validators.required],
+      streetName: ['', Validators.required],
+      houseNumber: ['', Validators.required],
+      city: ['', Validators.required],
+      birthDate: [null, Validators.required],
       roles: this.fb.array([])
     });
   }
@@ -35,7 +43,13 @@ export class UserDetailComponent implements OnInit {
         if (this.isNew) {
           return Observable.of({
             userName: '',
+            firstName: '',
+            lastName: '',
             emailAddress: '',
+            streetName: '',
+            houseNumber: null,
+            city: '',
+            birthDate: null,
             roles: []
           });
         } else {
@@ -71,26 +85,57 @@ export class UserDetailComponent implements OnInit {
 
   setFormData(user: User) {
     this.user = user;
-    this.userForm.reset({
-      id: this.user.id,
-      userName: this.user.userName,
-      emailAddress: this.user.emailAddress
-    });
-    this.setRoles(this.user.roles || []);
+    this.userForm.reset(user);
+    this.setRoles(this.user.roles);
   }
 
   onSubmit() {
-    this.userService.saveUser(this.userForm.value).subscribe(user => {
-      if (this.isNew) {
-        this.router.navigate(['/users', user.id]);
-      } else {
-        this.setFormData(user);
+    this.userForm.disable();
+    this.feedback = '';
+    this.userService.saveUser(this.userForm.value)
+      .subscribe(user => {
+        if (this.isNew) {
+          this.router.navigate(['/users', user.id]);
+        } else {
+          this.setFormData(user);
+        }
+        this.userForm.enable();
+        this.feedback = 'SUCCESS';
+      }, response => {
+        this.userForm.enable();
+        if (response.status == 400) {
+          this.feedback = 'INVALID';
+          this.setValidationErrors(response.json());
+        } else {
+          this.feedback = 'ERROR';
+        }
+      });
+  }
+
+  setValidationErrors(errors: any) {
+    if (errors) {
+      for (let key in this.userForm.controls) {
+        if (errors[key]) {
+          this.userForm.get(key).setErrors({'server_validation': errors[key][0]});
+        }
       }
-    });
-    this.ngOnInit();
+    }
+  }
+
+  getError(key: string) {
+    const control = this.userForm.get(key);
+    if(control.errors) {
+      if(control.errors.server_validation) {
+        return control.errors.server_validation;
+      } else if(control.touched && control.errors.required) {
+        return 'This field is required';
+      }
+    }
+    return null;
   }
 
   revert() {
     this.setFormData(this.user);
+    this.feedback = '';
   }
 }
