@@ -15,9 +15,10 @@
       "tsconfig": "tsconfig.app.json",
       "prefix": "if",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "assets/bootstrap-3-3-7/css/bootstrap.min.css"
       ],
-      "environmentSource": "environments/environment.ts"
+      "environmentSource": "environment.ts"
     }
   ],
   "defaults": {
