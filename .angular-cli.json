@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
     "version": "1.0.0",
-    "name": "iFlavours-UI"
+    "name": "iF-UI"
   },
   "apps": [
     {
@@ -12,7 +12,7 @@
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
-      "tsconfig": "tsconfig.app.json",
+      "tsconfig": "tsconfig.json",
       "prefix": "if",
       "styles": [
         "styles.css",
@@ -24,8 +24,7 @@
   "defaults": {
     "styleExt": "css",
     "component": {
-      "inlineTemplate": false,
-      "spec": true
+      "inlineTemplate": false
     }
   }
 }
