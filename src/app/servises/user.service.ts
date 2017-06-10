@@ -41,13 +41,12 @@ export class User {
   id?: string;
   userName: string;
   password?: string;
-  link?: string;
-  firstName?: string;
-  lastName?: string;
+  firstName: string;
+  lastName: string;
   emailAddress: string;
-  streetName?: string;
-  houseNumber?: number;
-  city?: string;
-  birthDate?: Date;
+  streetName: string;
+  houseNumber: number;
+  city: string;
+  birthDate: Date;
   roles: string[];
 }
