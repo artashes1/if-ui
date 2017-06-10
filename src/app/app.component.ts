@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'if-app',
   template: `
     <div class="container">
-      <h1>iFlavours assessment application</h1>
+      <h1>iF assessment application</h1>
       <router-outlet></router-outlet>
     </div>`
 })
