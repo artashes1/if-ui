@@ -2,8 +2,16 @@ h1 {
   color: #375499;
 }
 
-label.no-bottom-margin {
+.roles .well, .roles label.title {
   margin-bottom: 0;
+}
+
+.roles.has-error .well {
+  border-color: #a94442;
+}
+
+.roles .well {
+  background-color: #fafafa;
 }
 
 .form-group .error {
