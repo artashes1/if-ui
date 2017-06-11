@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { UserDetailComponent } from './components/user-detail.component';
-import { UserListComponent } from './components/user-list.component';
+import { UserDetailComponent } from './components/user-detail.page';
+import { UserListComponent } from './components/user-list.page';
 import { UserService } from './servises/user.service';
 import { UserRolesResolverService } from './servises/roles-resolver.service';
 import { CheckboxListComponent } from './components/checkbox-list.component';

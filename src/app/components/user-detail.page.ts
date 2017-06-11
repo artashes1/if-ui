@@ -10,7 +10,7 @@ import { Role } from '../servises/roles-resolver.service';
 
 @Component({
   selector: 'if-user-detail',
-  templateUrl: './user-detail.component.html'
+  templateUrl: './user-detail.page.html'
 })
 export class UserDetailComponent implements OnInit {
   isNew = false;

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'if-user-list',
-  templateUrl: './user-list.component.html'
+  templateUrl: './user-list.page.html'
 })
 export class UserListComponent implements OnInit {
   users: Observable<User[]>;
