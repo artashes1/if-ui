@@ -65,19 +65,6 @@ export class UserDetailComponent implements OnInit {
     return this.userForm.get('roles') as FormArray;
   };
 
-  hasRole(id: string): boolean {
-    return this.roles.value.indexOf(id) >= 0;
-  }
-
-  updateRole(id: string, event) {
-    if (event.target.checked) {
-      this.roles.push(this.fb.control(id));
-    } else {
-      this.roles.removeAt(this.roles.value.indexOf(id));
-    }
-    this.userForm.markAsDirty();
-  }
-
   setRoles(roles: string[]) {
     const roleFGs = roles.map(role => this.fb.control(role));
     this.userForm.setControl('roles', this.fb.array(roleFGs));

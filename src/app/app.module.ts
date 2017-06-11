@@ -9,6 +9,7 @@ import { UserDetailComponent } from './components/user-detail.component';
 import { UserListComponent } from './components/user-list.component';
 import { UserService } from './servises/user.service';
 import { UserRolesResolverService } from './servises/roles-resolver.service';
+import { CheckboxListComponent } from './components/checkbox-list.component';
 
 const appRoutes: Routes = [
   {
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [BrowserModule, HttpModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes)],
-  declarations: [AppComponent, UserDetailComponent, UserListComponent],
+  declarations: [AppComponent, UserDetailComponent, UserListComponent, CheckboxListComponent],
   providers: [UserService, UserRolesResolverService],
   bootstrap: [AppComponent]
 })

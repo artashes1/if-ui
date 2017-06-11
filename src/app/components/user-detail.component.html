@@ -17,12 +17,7 @@
 
       <div class="form-group roles" [ngClass]="{'has-error has-feedback': getError('roles')}">
         <label class="title">Roles:</label>
-        <div class="well well-lg">
-          <label *ngFor="let r of allRoles" class="center-block">
-            <input type="checkbox" [checked]="hasRole(r.id)" [disabled]="userForm.disabled" (change)="updateRole(r.id, $event)">
-            {{r.description}}
-          </label>
-        </div>
+        <if-checkbox-list [formArray]="roles"  [elements]="allRoles"></if-checkbox-list>
         <span class="error" *ngIf="getError('roles')">{{getError('roles')}}</span>
       </div>
 
